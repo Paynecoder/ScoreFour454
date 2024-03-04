@@ -33,7 +33,7 @@ public class GameController {
    * Starts a new Game by entering the commandReader loop.
    */
   public void startGame() {
-    view.displayMessage("Game started.");
+    view.displayMessage("Game started. Enter 'show manual' for a list of commands.");
     while (true) {
       commandReader.readCommand(this);
     }
@@ -45,6 +45,9 @@ public class GameController {
    */
   public void handleConsoleInput(String input) {
     if (input.endsWith(".")) {
+      if (input.startsWith("show manual")) {
+        handleShowManualCommand();
+      }
       if (input.startsWith("show board")) {
         handleShowBoardCommand();
       } else if (input.startsWith("quit")) {
@@ -65,6 +68,11 @@ public class GameController {
     } else {
       view.displayMessage("Invalid Command.");
     }
+  }
+
+  private void handleShowManualCommand() {
+    view.displayMessage("Commands:");
+    // List Commands
   }
 
   private void handleShowBoardCommand() {
