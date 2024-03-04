@@ -20,6 +20,7 @@ public class GameController {
   /**
    * Returns a new Game controller object with the specified Game model
    * and View.
+   *
    * @param game The Game to control.
    * @param view How the game is displayed to the end user.
    */
@@ -41,13 +42,11 @@ public class GameController {
 
   /**
    * Performs a command if it is valid, Prints an error message otherwise.
+   *
    * @param input Console command to be handled
    */
   public void handleConsoleInput(String input) {
     if (input.endsWith(".")) {
-      if (input.startsWith("show manual")) {
-        handleShowManualCommand();
-      }
       if (input.startsWith("show board")) {
         handleShowBoardCommand();
       } else if (input.startsWith("quit")) {
@@ -62,6 +61,8 @@ public class GameController {
         handleRemoveBeadCommand(input);
       } else if (input.startsWith("draw board")) {
         handleDrawBoardCommand();
+      } else if (input.startsWith("show manual")) {
+        handleShowManualCommand();
       } else {
         view.displayMessage("Invalid Command.");
       }
@@ -72,7 +73,7 @@ public class GameController {
 
   private void handleShowManualCommand() {
     view.displayMessage("Commands:");
-    // List Commands
+    // List commands
   }
 
   private void handleShowBoardCommand() {
