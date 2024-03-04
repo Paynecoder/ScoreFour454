@@ -22,10 +22,10 @@ public class Main {
  * TO DO:
  * AI
  * Get move from AI
- * Enter GUI Mode
- * Interactive Play
- * Choose Color
+ * Enter GUI Mode -> Enter by command -> 'go gui'
+ * Interactive Play -> AI Will instantly respond with a countermove. -> Make Playable in Console? 'go interactive'
+ * Choose Color -> In interactive play
  * Better Draw Board Testing Method
- * Add Manual Command
- * Make Nice Entry to CommandView Game
+ * Add Manual Command -> to display each command and their arguments and what they do.
+ * Make a list of all previous moves -> To be displayed in GUI.
 */
