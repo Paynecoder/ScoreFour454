@@ -34,7 +34,7 @@ public class GameController {
    * Starts a new Game by entering the commandReader loop.
    */
   public void startGame() {
-    view.displayMessage("Game started. Enter 'show manual' for a list of commands.");
+    view.displayMessage("Game started. Enter 'show manual.' for a list of commands.");
     while (true) {
       commandReader.readCommand(this);
     }

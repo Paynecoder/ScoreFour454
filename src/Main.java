@@ -26,6 +26,5 @@ public class Main {
  * Interactive Play -> AI Will instantly respond with a countermove. -> Make Playable in Console? 'go interactive'
  * Choose Color -> In interactive play
  * Better Draw Board Testing Method
- * Add Manual Command -> to display each command and their arguments and what they do.
  * Make a list of all previous moves -> To be displayed in GUI.
 */
