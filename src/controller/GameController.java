@@ -73,7 +73,14 @@ public class GameController {
 
   private void handleShowManualCommand() {
     view.displayMessage("Commands:");
-    // List commands
+    view.displayMessage("'clear.' Empties the current board");
+    view.displayMessage("'quit.' Gracefully quits");
+    view.displayMessage("'addBlackbeadtoA1.' adds black bead to position A1. (A-D, 1-4).");
+    view.displayMessage("'addWhitebeadtoA1.' adds white bead to position A1. (A-D, 1-4).");
+    view.displayMessage("'removebeadfromB3.' removes top bead from position B3. (A-D, 1-4).");
+    view.displayMessage("'show board.' Products the current board in a list format.");
+    view.displayMessage("''draw board.' draws a more visual representation of the current game board.");
+    // List Interactive, Gui, AI commands
   }
 
   private void handleShowBoardCommand() {
