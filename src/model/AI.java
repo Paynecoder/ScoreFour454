@@ -10,6 +10,7 @@ package model;
 
 import java.util.Random;
 
+
 public class AI {
 
   private Random rng;
@@ -26,7 +27,7 @@ public class AI {
       row = rng.nextInt(4);
       col = rng.nextInt(4);
     } while (game.isSpikeFullAt(row, col));
-    return new Move(row, col, game.getTurn().getPlayerColour());
+    return new Move(row, col, game.getAIColour());
   }
 
   public String recommendBlackMove() {

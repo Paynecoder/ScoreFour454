@@ -84,7 +84,7 @@ public class Game {
    * @return True if the bead was placed, False otherwise.
    */
   public boolean makeMove(Move move) {
-    boolean success = board.addBead(move.getRow(), move.getCol(), move.getColour());
+    boolean success = board.addBead(move.getRow(), move.getCol(), currPlayer.getPlayerColour());
     if (success) {
       allMoves.add(move);
       switchTurn();
@@ -151,5 +151,9 @@ public class Game {
    */
   public Playable getPrevTurn() {
     return (getTurn() == player1) ? player2 : player1;
+  }
+
+  public BeadColour getAIColour() {
+    return player2.getPlayerColour();
   }
 }

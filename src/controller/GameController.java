@@ -46,20 +46,31 @@ public class GameController {
   }
 
   public void startInteractiveGame() {
-    BeadColour chosenColour = commandReader.readInteractiveColour();
+    BeadColour chosenColour = commandReader.getInteractiveColour();
     this.game = new Game(chosenColour);
     view.displayMessage("Game started.");
-    while (!game.checkDraw() || !game.checkWin()) {
+    while (!game.checkDraw() && !game.checkWin()) {
       if (game.getTurn() instanceof AIPlayer) {
         Move move = ai.getMove();
         game.makeMove(move);
         handleDrawBoardCommand();
       } else {
-        view.displayMessage("Your Turn Enter a Move Like 'B2' (A-D, 1-4)");
-        // Add this, probaly add readInteractiveCommand method that takes controller
-        // Add handleInteractive conole input?
+        Move move = commandReader.readInteractiveMoveCommand(this);
+        if (game.makeMove(move)) {
+          handleDrawBoardCommand();
+        }
+        view.displayMessage("Impossible.");
       }
     }
+
+
+    if (game.checkWin()) {
+      view.displayMessage("Game Over! " + (game.getPrevTurn().getName() + " wins."));
+    } else {
+      view.displayMessage("Game Over! It was a draw.");
+    }
+    view.displayMessage("Returning to testing mode.");
+    this.game = new Game();
   }
 
   /**
@@ -207,6 +218,10 @@ public class GameController {
     } else {
       view.displayMessage("Impossible");
     }
+  }
+
+  public Game getGame() {
+    return this.game;
   }
 
 }
