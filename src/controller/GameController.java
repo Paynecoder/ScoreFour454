@@ -56,7 +56,8 @@ public class GameController {
         handleDrawBoardCommand();
       } else {
         view.displayMessage("Your Turn Enter a Move Like 'B2' (A-D, 1-4)");
-        // Add this
+        // Add this, probaly add readInteractiveCommand method that takes controller
+        // Add handleInteractive conole input?
       }
     }
   }
