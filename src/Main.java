@@ -26,4 +26,5 @@ public class Main {
  * Interactive Play -> AI Will instantly respond with a countermove and player can choose colour. -> Make Playable in Console? 'go interactive'
  * Better Draw Board Testing Method
  * Make a list of all previous moves -> To be displayed in GUI.
+ * Write a test method for each kind of possible line.
 */
