@@ -27,7 +27,7 @@ public class AI {
       row = rng.nextInt(4);
       col = rng.nextInt(4);
     } while (game.isSpikeFullAt(row, col));
-    return new Move(row, col, game.getAIColour());
+    return new Move(row, col, game.getTurn().getPlayerColour());
   }
 
   public String recommendBlackMove() {

@@ -152,8 +152,4 @@ public class Game {
   public Playable getPrevTurn() {
     return (getTurn() == player1) ? player2 : player1;
   }
-
-  public BeadColour getAIColour() {
-    return player2.getPlayerColour();
-  }
 }
