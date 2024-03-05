@@ -8,14 +8,18 @@
  */
 package controller;
 
+import model.AI;
 import model.BeadColour;
 import model.Game;
+import model.Move;
+import model.player.AIPlayer;
 import view.Viewable;
 
 public class GameController {
   private Game game;
   private Viewable view;
   private CommandReader commandReader;
+  private AI ai;
 
   /**
    * Returns a new Game controller object with the specified Game model
@@ -28,6 +32,7 @@ public class GameController {
     this.game = game;
     this.view = view;
     this.commandReader = new CommandReader();
+    this.ai = new AI(game);
   }
 
   /**
@@ -37,6 +42,22 @@ public class GameController {
     view.displayMessage("Game started. Enter 'show manual.' for a list of commands.");
     while (true) {
       commandReader.readCommand(this);
+    }
+  }
+
+  public void startInteractiveGame() {
+    BeadColour chosenColour = commandReader.readInteractiveColour();
+    this.game = new Game(chosenColour);
+    view.displayMessage("Game started.");
+    while (!game.checkDraw() || !game.checkWin()) {
+      if (game.getTurn() instanceof AIPlayer) {
+        Move move = ai.getMove();
+        game.makeMove(move);
+        handleDrawBoardCommand();
+      } else {
+        view.displayMessage("Your Turn Enter a Move Like 'B2' (A-D, 1-4)");
+        // Add this
+      }
     }
   }
 
@@ -63,12 +84,30 @@ public class GameController {
         handleDrawBoardCommand();
       } else if (input.startsWith("show manual")) {
         handleShowManualCommand();
+      } else if (input.startsWith("get white move")) {
+        handleRecommendWhiteMove();
+      } else if (input.startsWith("get black move")) {
+        handleRecommendBlackMove();
+      } else if (input.startsWith("go interactive")) {
+        handleGoInteractiveCommand();
       } else {
         view.displayMessage("Invalid Command.");
       }
     } else {
       view.displayMessage("Invalid Command.");
     }
+  }
+
+  private void handleGoInteractiveCommand() {
+    startInteractiveGame();
+  }
+
+  private void handleRecommendBlackMove() {
+    view.displayMessage(ai.recommendBlackMove());
+  }
+
+  private void handleRecommendWhiteMove() {
+    view.displayMessage(ai.recommendWhiteMove());
   }
 
   private void handleShowManualCommand() {
@@ -79,8 +118,11 @@ public class GameController {
     view.displayMessage("'addWhitebeadtoA1.' adds white bead to position A1. (A-D, 1-4).");
     view.displayMessage("'removebeadfromB3.' removes top bead from position B3. (A-D, 1-4).");
     view.displayMessage("'show board.' Products the current board in a list format.");
-    view.displayMessage("''draw board.' draws a more visual representation of the current game board.");
-    // List Interactive, Gui, AI commands
+    view.displayMessage("'draw board.' draws a more visual representation of the current game board.");
+    view.displayMessage("'get white move.' Get a recommended move from the AI subsystem for the white player.");
+    view.displayMessage("'get black move.' Get a recommended move from the AI subsystem for the black player.");
+    view.displayMessage("'go interactive.' Plays an Interactive 1v1 VS the CPU!");
+    // List Gui command
   }
 
   private void handleShowBoardCommand() {
@@ -115,13 +157,11 @@ public class GameController {
         view.displayMessage(game.getPrevTurn().getName() + " wins!");
         game.clearBoard();
         view.displayMessage("New Game Created: Humans Turn ->");
-        return;
       } else if (game.checkDraw()) {
         view.displayMessage(game.drawBoard());
         view.displayMessage("It's a draw!");
         game.clearBoard();
         view.displayMessage("New Game Created: Humans Turn ->");
-        return;
       }
     } else {
       view.displayMessage("Impossible");
@@ -144,13 +184,11 @@ public class GameController {
         view.displayMessage(game.getPrevTurn().getName() + " wins!");
         game.clearBoard();
         view.displayMessage("New Game Created: Humans Turn ->");
-        return;
       } else if (game.checkDraw()) {
         view.displayMessage(game.drawBoard());
         view.displayMessage("It's a draw!");
         game.clearBoard();
         view.displayMessage("New Game Created: Humans Turn ->");
-        return;
       }
     } else {
       view.displayMessage("Impossible");

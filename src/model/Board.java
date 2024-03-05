@@ -24,6 +24,10 @@ public class Board {
     }
   }
 
+
+  public boolean isSpikeFullAt(int row, int col) {
+    return board[row][col].isFull();
+  }
   /**
    * Remove the top bead from a Spike on a specified row and column.
    *
@@ -145,8 +149,7 @@ public class Board {
 
   /**
    * Checks if there's a winning condition on the board.
-   * This method evaluates all possible win conditions including verticals,
-   * horizontals, front to backs, layer diagonals, and skew diagonals.
+   * This method evaluates all possible line conditions including straight, layer diagonals, and skew diagonals.
    *
    * @return true if a win condition is found, false otherwise.
    */

@@ -8,6 +8,8 @@
  */
 package model;
 
+import java.util.ArrayList;
+
 import model.player.AIPlayer;
 import model.player.HumanPlayer;
 import model.player.Playable;
@@ -17,6 +19,7 @@ public class Game {
   private Playable player1;
   private Playable player2;
   private Playable currPlayer;
+  private ArrayList<Move> allMoves;
 
   /**
    * Constructs a new Game Object with a Human, AI Player, and Empty Board.
@@ -27,6 +30,28 @@ public class Game {
     player1 = new HumanPlayer(BeadColour.WHITE, "Human");
     player2 = new AIPlayer(BeadColour.BLACK, "AI");
     currPlayer = player1;
+    allMoves = new ArrayList<Move>();
+  }
+
+  /**
+   * Overloaded constructor to allow user to choose their own colour.
+   * @param humanBeadColour the users chosen colour.
+   */
+  public Game(BeadColour humanBeadColour) {
+    BeadColour aiColour = humanBeadColour == BeadColour.WHITE ? BeadColour.BLACK : BeadColour.WHITE;
+    board = new Board();
+    player1 = new HumanPlayer(humanBeadColour, "Human");
+    player2 = new AIPlayer(aiColour, "AI");
+    currPlayer = humanBeadColour == BeadColour.WHITE ? player1 : player2;
+    allMoves = new ArrayList<>();
+  }
+
+  public ArrayList<Move> getAllMoves() {
+    return allMoves;
+  }
+
+  public boolean isSpikeFullAt(int row, int col) {
+    return board.isSpikeFullAt(row, col);
   }
 
 
@@ -47,13 +72,28 @@ public class Game {
   public boolean makeMove(int row, int col) {
     boolean success = board.addBead(row, col, currPlayer.getPlayerColour());
     if (success) {
+      allMoves.add(new Move(row, col, currPlayer.getPlayerColour()));
       switchTurn();
     }
     return success;
   }
 
   /**
-   * Attempts to remove the top bead from specified spike.
+   * Attempts to make the specified move
+   * @param move data of move
+   * @return True if the bead was placed, False otherwise.
+   */
+  public boolean makeMove(Move move) {
+    boolean success = board.addBead(move.getRow(), move.getCol(), move.getColour());
+    if (success) {
+      allMoves.add(move);
+      switchTurn();
+    }
+    return success;
+  }
+
+  /**
+   * Attempts to remove the top most bead from specified spike.
    * @param row Row coordinate of specified spike
    * @param col Column coordinate of specified spike.
    * @return True if a bead was removed, false otherwise.
@@ -63,8 +103,6 @@ public class Game {
   }
 
   /**
-   * Returns a string that represents the current Game board in a neat
-   * ASCII format.
    * @return The Game board in neat ASCII format.
    */
   public String showBoard() {
@@ -72,8 +110,6 @@ public class Game {
   }
 
   /**
-   * Returns a string that represents the current Game board in a more
-   * enhanced ASCII format.
    * @return The game board in enahnced ASCII format.
    */
   public String drawBoard() {
@@ -81,7 +117,6 @@ public class Game {
   }
 
   /**
-   * Returns the Player of the current Turn.
    * @return The Current Player.
    */
   public Playable getTurn() {
@@ -96,7 +131,6 @@ public class Game {
   }
 
   /**
-   * Returns the Game Board object
    * @return The game board object
    */
   public Board getBoard() {
@@ -108,6 +142,7 @@ public class Game {
    */
   public void clearBoard() {
     board.clearBoard();
+    allMoves.clear();
     currPlayer = player1;
   }
 

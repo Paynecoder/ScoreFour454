@@ -10,6 +10,9 @@ package controller;
 
 import java.util.Scanner;
 
+import model.BeadColour;
+
+
 public class CommandReader {
   private Scanner scanner;
 
@@ -31,4 +34,17 @@ public class CommandReader {
     String input = scanner.nextLine();
     controller.handleConsoleInput(input);
   }
+
+  public BeadColour readInteractiveColour() {
+    System.out.println("Enter Colour: 'B' or 'W': ");
+    String input;
+    do {
+        input = scanner.nextLine();
+        if (!input.equalsIgnoreCase("B") && !input.equalsIgnoreCase("W")) {
+            System.out.println("Invalid Colour.");
+        }
+    } while (!input.equalsIgnoreCase("B") && !input.equalsIgnoreCase("W"));
+    return input.equalsIgnoreCase("W") ? BeadColour.WHITE : BeadColour.BLACK;
+}
+
 }
