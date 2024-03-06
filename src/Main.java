@@ -20,7 +20,7 @@ public class Main {
 
 /**
  * TO DO:
- * Enter GUI Mode -> Enter by command -> 'go gui'
+ * 'go gui' -> Start making gui components
  * Better Draw Board Testing Method
  * Fix win check for more complex lines.
 */

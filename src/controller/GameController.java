@@ -13,6 +13,7 @@ import model.BeadColour;
 import model.Game;
 import model.Move;
 import model.player.AIPlayer;
+import view.GameFrame;
 import view.Viewable;
 
 public class GameController {
@@ -45,6 +46,11 @@ public class GameController {
     }
   }
 
+  /**
+   * Starts a 1v1 interactive game vs the AI.
+   * Players are restricted to turn play until a win or draw occurs.
+   * Or a quit command has been entered.
+   */
   public void startInteractiveGame() {
     BeadColour chosenColour = commandReader.getInteractiveColour();
     this.game = new Game(chosenColour);
@@ -62,8 +68,6 @@ public class GameController {
         view.displayMessage("Impossible.");
       }
     }
-
-
     if (game.checkWin()) {
       view.displayMessage("Game Over! " + (game.getPrevTurn().getName() + " wins."));
     } else {
@@ -71,6 +75,10 @@ public class GameController {
     }
     view.displayMessage("Returning to testing mode.");
     this.game = new Game();
+  }
+
+  public void switchView(Viewable view) {
+    this.view = view;
   }
 
   /**
@@ -102,12 +110,21 @@ public class GameController {
         handleRecommendBlackMove();
       } else if (input.startsWith("go interactive")) {
         handleGoInteractiveCommand();
+      } else if (input.startsWith("go gui")) {
+        handleGoGuiCommand();
       } else {
         view.displayMessage("Invalid Command.");
       }
     } else {
       view.displayMessage("Invalid Command.");
     }
+  }
+
+  private void handleGoGuiCommand() {
+    javax.swing.SwingUtilities.invokeLater(() -> {
+      Viewable gui = new GameFrame();
+      switchView(gui);
+    });
   }
 
   private void handleGoInteractiveCommand() {
@@ -134,7 +151,7 @@ public class GameController {
     view.displayMessage("'get white move.' Get a recommended move from the AI subsystem for the white player.");
     view.displayMessage("'get black move.' Get a recommended move from the AI subsystem for the black player.");
     view.displayMessage("'go interactive.' Plays an Interactive 1v1 VS the CPU!");
-    // List Gui command
+    view.displayMessage("'go gui.' Play the game in a GUI!");
   }
 
   private void handleShowBoardCommand() {
