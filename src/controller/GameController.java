@@ -60,12 +60,19 @@ public class GameController {
         Move move = ai.getMove();
         game.makeMove(move);
         handleDrawBoardCommand();
+        if (game.checkDraw() || game.checkWin()) {
+          break;
+        }
       } else {
         Move move = commandReader.readInteractiveMoveCommand(this);
         if (game.makeMove(move)) {
           handleDrawBoardCommand();
+          if (game.checkDraw() || game.checkWin()) {
+            break;
+          }
+        } else {
+          view.displayMessage("Impossible.");
         }
-        view.displayMessage("Impossible.");
       }
     }
     if (game.checkWin()) {
