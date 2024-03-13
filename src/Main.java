@@ -2,7 +2,7 @@
  * The entry point for the Score Four game.
  * Creates a new Game and ConsoleView and starts the game through a GameController.
  *
- * @author 454HorsePower
+ * @author Joshua Payne
  * @version 1
  */
 import controller.GameController;

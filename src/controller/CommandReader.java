@@ -64,7 +64,6 @@ public class CommandReader {
 
   private boolean isValidMove(String input) {
     // Check if the input matches the pattern of a valid move (e.g., 'B2')
-    // Regex!!!!
     return input.matches("^[A-Da-d][1-4]$");
   }
 

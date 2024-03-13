@@ -2,10 +2,10 @@
  * This class represents the Game Controller. That houses the
  * current Game model as well as a View whether it be Graphics or a GUI.
  *
+ * @author Joshua Payne
  * @author Sukirat Dhillon
  * @author Swethin Panjwani
  * @author Gursevak Billing
- * @author Joshua Payne
  * @author Anupriya Shaju
  * @author Willbert Suteja
  * @version 1

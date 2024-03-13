@@ -1,8 +1,8 @@
 /**
  * This class represents a Spike in a Score Four game (4x4x4 Connect Four).
  *
- * @author Gursevak Billing
  * @author Joshua Payne
+ * @author Gursevak Billing
  * @version 1
  */
 package model;

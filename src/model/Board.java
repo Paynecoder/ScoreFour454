@@ -1,8 +1,8 @@
 /**
  * This class represents a Board in a Score Four game (4x4x4 Connect Four).
  *
- * @author Gursevak Billing
  * @author Joshua Payne
+ * @author Gursevak Billing
  * @author Willbert Suteja
  * @version 1
  */
