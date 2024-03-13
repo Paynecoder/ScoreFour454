@@ -75,4 +75,19 @@ public class CommandReader {
     return new Move(row, col, controller.getGame().getTurn().getPlayerColour());
   }
 
+  public Move parseAddBeadCommand(String input, BeadColour beadColour) {
+    String location = input.substring(input.indexOf("to") + 2, input.length() - 1);
+    char rowChar = location.charAt(0);
+    int row = Character.toUpperCase(rowChar) - 'A';
+    int col = Integer.parseInt(location.substring(1)) - 1;
+    return new Move(row, col, beadColour);
+  }
+
+  public int[] parseRemoveBeadCommand(String input) {
+    String location = input.substring(14, input.length() - 1);
+    int row = Character.toUpperCase(location.charAt(0)) - 'A';
+    int col = Integer.parseInt(location.substring(1)) - 1;
+    return new int[] { row, col };
+  }
+
 }

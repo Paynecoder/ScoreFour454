@@ -14,7 +14,7 @@ public class Main {
         Game game = new Game();
         ConsoleView view = new ConsoleView();
         GameController controller = new GameController(game, view);
-        controller.startGame();
+        controller.startTesting();
     }
 }
 

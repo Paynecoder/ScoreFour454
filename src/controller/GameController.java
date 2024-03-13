@@ -39,8 +39,8 @@ public class GameController {
   /**
    * Starts a new Game by entering the commandReader loop.
    */
-  public void startGame() {
-    view.displayMessage("Game started. Enter 'show manual.' for a list of commands.");
+  public void startTesting() {
+    view.displayMessage("Game started in testing mode. Enter 'show manual.' for a list of commands.");
     while (true) {
       commandReader.readCommand(this);
     }
@@ -63,19 +63,10 @@ public class GameController {
       } else {
         move = commandReader.readInteractiveMoveCommand(this);
       }
-
       game.makeMove(move);
       view.displayMessage(game.drawBoard());
-
-      if (game.checkDraw()) {
-        view.displayMessage("Game Over! It was a draw.");
-        break;
-      } else if (game.checkWin()) {
-        view.displayMessage("Game Over! " + game.getPrevTurn().getName() + " wins.");
-        break;
-      }
     }
-    this.game.clearBoard();
+    checkGameStatus();
   }
 
   public void switchView(Viewable view) {
@@ -171,34 +162,6 @@ public class GameController {
     game.clearBoard();
   }
 
-  private void handleAddBeadCommand(String input, BeadColour beadColour) {
-    String location = input.substring(14, input.length() - 1);
-    char rowChar = location.charAt(0);
-    int row = rowChar - 'A';
-    int col = Integer.parseInt(location.substring(1)) - 1;
-    if (game.getTurn().getPlayerColour() != beadColour) {
-      game.switchTurn();
-    }
-    Move move = new Move(row, col, beadColour);
-    boolean success = game.makeMove(move);
-    if (success) {
-      view.displayMessage("Done.");
-      if (game.checkWin()) {
-        view.displayMessage(game.drawBoard());
-        view.displayMessage(game.getPrevTurn().getName() + " wins!");
-        game.clearBoard();
-        view.displayMessage("New Game Created: Humans Turn ->");
-      } else if (game.checkDraw()) {
-        view.displayMessage(game.drawBoard());
-        view.displayMessage("It's a draw!");
-        game.clearBoard();
-        view.displayMessage("New Game Created: Humans Turn ->");
-      }
-    } else {
-      view.displayMessage("Impossible");
-    }
-  }
-
   private void handleAddWhiteBeadCommand(String input) {
     handleAddBeadCommand(input, BeadColour.WHITE);
   }
@@ -207,16 +170,38 @@ public class GameController {
     handleAddBeadCommand(input, BeadColour.BLACK);
   }
 
-  private void handleRemoveBeadCommand(String input) {
-    String location = input.substring(14, input.length() - 1);
-    char rowChar = location.charAt(0);
-    int row = rowChar - 'A';
-    int col = Integer.parseInt(location.substring(1)) - 1;
-    boolean success = game.deleteTopBead(row, col);
-    if (success) {
+  private void handleAddBeadCommand(String input, BeadColour beadColour) {
+    Move move = commandReader.parseAddBeadCommand(input, beadColour);
+    if (beadColour != game.getTurn().getPlayerColour()) {
+      game.switchTurn();
+    }
+    if (move != null && game.makeMove(move)) {
       view.displayMessage("Done.");
+      checkGameStatus();
     } else {
-      view.displayMessage("Impossible");
+      view.displayMessage("Impossible.");
+    }
+    checkGameStatus();
+  }
+
+  private void handleRemoveBeadCommand(String input) {
+    int[] coordinates = commandReader.parseRemoveBeadCommand(input);
+    if (coordinates != null && game.deleteTopBead(coordinates[0], coordinates[1])) {
+      view.displayMessage("Dine.");
+      checkGameStatus();
+    } else {
+      view.displayMessage("Impossible.");
+    }
+    checkGameStatus();
+  }
+
+  private void checkGameStatus() {
+    if (game.checkWin()) {
+      view.displayMessage("Game Over! " + game.getPrevTurn().getName() + " wins.");
+      game.clearBoard();
+    } else if (game.checkDraw()) {
+      view.displayMessage("Game Over! It was a draw.");
+      game.clearBoard();
     }
   }
 
