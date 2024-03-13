@@ -8,7 +8,6 @@
  */
 package model;
 
-import java.util.ArrayList;
 
 import model.player.AIPlayer;
 import model.player.HumanPlayer;
@@ -19,7 +18,6 @@ public class Game {
   private Playable player1;
   private Playable player2;
   private Playable currPlayer;
-  private ArrayList<Move> allMoves;
 
   /**
    * Constructs a new Game Object with a Human, AI Player, and Empty Board.
@@ -30,30 +28,27 @@ public class Game {
     player1 = new HumanPlayer(BeadColour.WHITE, "Human");
     player2 = new AIPlayer(BeadColour.BLACK, "AI");
     currPlayer = player1;
-    allMoves = new ArrayList<Move>();
   }
 
-  /**
-   * Overloaded constructor to allow user to choose their own colour.
-   * @param humanBeadColour the users chosen colour.
-   */
-  public Game(BeadColour humanBeadColour) {
-    BeadColour aiColour = humanBeadColour == BeadColour.WHITE ? BeadColour.BLACK : BeadColour.WHITE;
-    board = new Board();
-    player1 = new HumanPlayer(humanBeadColour, "Human");
-    player2 = new AIPlayer(aiColour, "AI");
-    currPlayer = humanBeadColour == BeadColour.WHITE ? player1 : player2;
-    allMoves = new ArrayList<>();
-  }
 
-  public ArrayList<Move> getAllMoves() {
-    return allMoves;
+  public void startNewGame(BeadColour chosenColour) {
+    this.board.clearBoard();
+
+    if (chosenColour == BeadColour.WHITE) {
+      player1 = new HumanPlayer(BeadColour.WHITE, "Human");
+      player2 = new AIPlayer(BeadColour.BLACK, "AI");
+      currPlayer = player1;
+    } else {
+      player1 = new AIPlayer(BeadColour.WHITE, "AI");
+      player2 = new HumanPlayer(BeadColour.BLACK, "Human");
+      currPlayer = player1;
+    }
+
   }
 
   public boolean isSpikeFullAt(int row, int col) {
     return board.isSpikeFullAt(row, col);
   }
-
 
   public boolean checkWin() {
     return board.checkWin();
@@ -65,6 +60,7 @@ public class Game {
 
   /**
    * Attempts to place a bead on the board if the specified Spike is not full.
+   *
    * @param row Row coordinate of specified spike
    * @param col Column coordinate of specified spike
    * @return True if the bead was placed, False otherwise.
@@ -72,7 +68,6 @@ public class Game {
   public boolean makeMove(int row, int col) {
     boolean success = board.addBead(row, col, currPlayer.getPlayerColour());
     if (success) {
-      allMoves.add(new Move(row, col, currPlayer.getPlayerColour()));
       switchTurn();
     }
     return success;
@@ -80,13 +75,13 @@ public class Game {
 
   /**
    * Attempts to make the specified move
+   *
    * @param move data of move
    * @return True if the bead was placed, False otherwise.
    */
   public boolean makeMove(Move move) {
     boolean success = board.addBead(move.getRow(), move.getCol(), currPlayer.getPlayerColour());
     if (success) {
-      allMoves.add(move);
       switchTurn();
     }
     return success;
@@ -94,6 +89,7 @@ public class Game {
 
   /**
    * Attempts to remove the top most bead from specified spike.
+   *
    * @param row Row coordinate of specified spike
    * @param col Column coordinate of specified spike.
    * @return True if a bead was removed, false otherwise.
@@ -142,7 +138,6 @@ public class Game {
    */
   public void clearBoard() {
     board.clearBoard();
-    allMoves.clear();
     currPlayer = player1;
   }
 

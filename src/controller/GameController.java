@@ -53,36 +53,30 @@ public class GameController {
    */
   public void startInteractiveGame() {
     BeadColour chosenColour = commandReader.getInteractiveColour();
-    this.game = new Game(chosenColour);
+    this.game.startNewGame(chosenColour); // Assume we added this method to Game
     view.displayMessage("Game started.");
+
     while (!game.checkDraw() && !game.checkWin()) {
-      if (game.getTurn() instanceof AIPlayer) {
-        Move move = ai.getMove();
-        game.makeMove(move);
-        handleDrawBoardCommand();
-        if (game.checkDraw() || game.checkWin()) {
-          break;
-        }
-      } else {
-        Move move = commandReader.readInteractiveMoveCommand(this);
-        if (game.makeMove(move)) {
-          handleDrawBoardCommand();
-          if (game.checkDraw() || game.checkWin()) {
-            break;
-          }
+        Move move;
+        if (game.getTurn() instanceof AIPlayer) {
+            move = ai.getMove();
         } else {
-          view.displayMessage("Impossible.");
+            move = commandReader.readInteractiveMoveCommand(this);
         }
-      }
+
+        game.makeMove(move);
+        view.displayMessage(game.drawBoard());
+
+        if (game.checkDraw()) {
+            view.displayMessage("Game Over! It was a draw.");
+            break;
+        } else if (game.checkWin()) {
+            view.displayMessage("Game Over! " + game.getPrevTurn().getName() + " wins.");
+            break;
+        }
     }
-    if (game.checkWin()) {
-      view.displayMessage("Game Over! " + (game.getPrevTurn().getName() + " wins."));
-    } else {
-      view.displayMessage("Game Over! It was a draw.");
-    }
-    view.displayMessage("Returning to testing mode.");
-    this.game = new Game();
-  }
+   this.game.clearBoard();
+}
 
   public void switchView(Viewable view) {
     this.view = view;
@@ -177,15 +171,16 @@ public class GameController {
     game.clearBoard();
   }
 
-  private void handleAddWhiteBeadCommand(String input) {
+  private void handleAddBeadCommand(String input, BeadColour beadColour) {
     String location = input.substring(14, input.length() - 1);
     char rowChar = location.charAt(0);
     int row = rowChar - 'A';
     int col = Integer.parseInt(location.substring(1)) - 1;
-    if (game.getTurn().getPlayerColour() == BeadColour.BLACK) {
+    if (game.getTurn().getPlayerColour() != beadColour) {
       game.switchTurn();
     }
-    boolean success = game.makeMove(row, col);
+    Move move = new Move(row, col, beadColour);
+    boolean success = game.makeMove(move);
     if (success) {
       view.displayMessage("Done.");
       if (game.checkWin()) {
@@ -204,31 +199,12 @@ public class GameController {
     }
   }
 
+  private void handleAddWhiteBeadCommand(String input) {
+    handleAddBeadCommand(input, BeadColour.WHITE);
+  }
+
   private void handleAddBlackBeadCommand(String input) {
-    String location = input.substring(14, input.length() - 1);
-    char rowChar = location.charAt(0);
-    int row = rowChar - 'A';
-    int col = Integer.parseInt(location.substring(1)) - 1;
-    if (game.getTurn().getPlayerColour() == BeadColour.WHITE) {
-      game.switchTurn();
-    }
-    boolean success = game.makeMove(row, col);
-    if (success) {
-      view.displayMessage("Done.");
-      if (game.checkWin()) {
-        view.displayMessage(game.drawBoard());
-        view.displayMessage(game.getPrevTurn().getName() + " wins!");
-        game.clearBoard();
-        view.displayMessage("New Game Created: Humans Turn ->");
-      } else if (game.checkDraw()) {
-        view.displayMessage(game.drawBoard());
-        view.displayMessage("It's a draw!");
-        game.clearBoard();
-        view.displayMessage("New Game Created: Humans Turn ->");
-      }
-    } else {
-      view.displayMessage("Impossible");
-    }
+    handleAddBeadCommand(input, BeadColour.BLACK);
   }
 
   private void handleRemoveBeadCommand(String input) {
