@@ -140,8 +140,8 @@ public class GameController {
     view.displayMessage("'removebeadfromB3.' removes top bead from position B3. (A-D, 1-4).");
     view.displayMessage("'show board.' Products the current board in a list format.");
     view.displayMessage("'draw board.' draws a more visual representation of the current game board.");
-    view.displayMessage("'get white move.' Get a recommended move from the AI subsystem for the white player.");
-    view.displayMessage("'get black move.' Get a recommended move from the AI subsystem for the black player.");
+    view.displayMessage("'get white move.' Get a recommended move from the AI subsystem for the white beads.");
+    view.displayMessage("'get black move.' Get a recommended move from the AI subsystem for the black beads.");
     view.displayMessage("'go interactive.' Plays an Interactive 1v1 VS the CPU!");
     view.displayMessage("'go gui.' Play the game in a GUI!");
   }

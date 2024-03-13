@@ -17,10 +17,3 @@ public class Main {
         controller.startTesting();
     }
 }
-
-/**
- * TO DO:
- * Cleanup GameController class -> seperate CommandReader to the view and try to move all game logic to to the Game class.
- * ^^ -> Try to make more generic methods that can be used for both gui/console when moving to commandReader
- * 'go gui' -> Start making gui components
-*/
