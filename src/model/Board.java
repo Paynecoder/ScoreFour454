@@ -206,7 +206,7 @@ public class Board {
    */
   public boolean checkWin() {
     return checkVerticals() || checkHorizontals() || checkFrontToBacks() ||
-        checkLayerDiagonals() || checkSkewDiagonals();
+        checkLayerDiagonals() || checkSkewDiagonals() || checkRowDiagonals();
   }
 
   /**
@@ -358,4 +358,20 @@ public class Board {
         checkLine(getBeadColour(3, 3, 0), getBeadColour(2, 2, 1),
             getBeadColour(1, 1, 2), getBeadColour(0, 0, 3));
   }
+
+  /**
+   * Checks diagonal lines within a row of spikes
+   * @return  True if a line is foumd, false otherwise.
+   */
+  private boolean checkRowDiagonals() {
+    for (int y = 0; y < BOARDSIZE; y++) {
+        if (checkLine(getBeadColour(0, y, 0), getBeadColour(1, y, 1),
+                getBeadColour(2, y, 2), getBeadColour(3, y, 3)) ||
+            checkLine(getBeadColour(0, y, 3), getBeadColour(1, y, 2),
+                getBeadColour(2, y, 1), getBeadColour(3, y, 0))) {
+            return true;
+        }
+    }
+    return false;
+}
 }

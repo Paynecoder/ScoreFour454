@@ -57,26 +57,26 @@ public class GameController {
     view.displayMessage("Game started.");
 
     while (!game.checkDraw() && !game.checkWin()) {
-        Move move;
-        if (game.getTurn() instanceof AIPlayer) {
-            move = ai.getMove();
-        } else {
-            move = commandReader.readInteractiveMoveCommand(this);
-        }
+      Move move;
+      if (game.getTurn() instanceof AIPlayer) {
+        move = ai.getMove();
+      } else {
+        move = commandReader.readInteractiveMoveCommand(this);
+      }
 
-        game.makeMove(move);
-        view.displayMessage(game.drawBoard());
+      game.makeMove(move);
+      view.displayMessage(game.drawBoard());
 
-        if (game.checkDraw()) {
-            view.displayMessage("Game Over! It was a draw.");
-            break;
-        } else if (game.checkWin()) {
-            view.displayMessage("Game Over! " + game.getPrevTurn().getName() + " wins.");
-            break;
-        }
+      if (game.checkDraw()) {
+        view.displayMessage("Game Over! It was a draw.");
+        break;
+      } else if (game.checkWin()) {
+        view.displayMessage("Game Over! " + game.getPrevTurn().getName() + " wins.");
+        break;
+      }
     }
-   this.game.clearBoard();
-}
+    this.game.clearBoard();
+  }
 
   public void switchView(Viewable view) {
     this.view = view;
