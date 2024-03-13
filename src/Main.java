@@ -20,7 +20,8 @@ public class Main {
 
 /**
  * To Do:
- * Names
  * Comments
- * Gui If we feel like it
+ * Add where the AI played a move in interactive mode
+ * Diagonal Lines in drawBoard
+ * Ensure all wincheck is 100%
  */

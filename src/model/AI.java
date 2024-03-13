@@ -2,8 +2,7 @@
  * This class represents the AI subsystem utilized by the AI Player
  * and Human Player to recommend moves.
  *
- * @author Joshua Payne
- *         Student Number: 230152032
+ * @author Gursevak Billing
  * @version 1
  */
 package model;

@@ -1,8 +1,7 @@
 /**
  * This interface represents what a player in Score Four is capable of.
  *
- * @author Joshua Payne,
- *         Student Number: 230152032
+ * @author Anupriya Shaju
  * @version 1
  */
 package model.player;

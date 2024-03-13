@@ -1,8 +1,8 @@
 /**
  * Represents a Move in its most basic form. Holding a row and column coordinate.
  *
- * @author Joshua Payne,
- *         Student Number: 230152032
+ * @author Sukirat Dhillon
+ * @author Willbert Suteja
  * @version 1
  */
 package model;

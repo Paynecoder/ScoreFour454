@@ -1,8 +1,7 @@
 /**
  * This class represents an AI Player as an opponent for the Score Four Game.
  *
- * @author Joshua Payne,
- *         Student Number: 230152032
+ * @author Anupriya Shaju
  * @version 1
  */
 package model.player;

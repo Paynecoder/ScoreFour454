@@ -3,11 +3,11 @@
  * Bringing all elements of the model together.
  *
  * @author Joshua Payne,
- *         Student Number: 230152032
+ * @author Gursevak Billing
+ * @author Willbert Suteja
  * @version 1
  */
 package model;
-
 
 import model.player.AIPlayer;
 import model.player.HumanPlayer;
@@ -29,7 +29,6 @@ public class Game {
     player2 = new AIPlayer(BeadColour.BLACK, "AI");
     currPlayer = player1;
   }
-
 
   public void startNewGame(BeadColour chosenColour) {
     this.board.clearBoard();

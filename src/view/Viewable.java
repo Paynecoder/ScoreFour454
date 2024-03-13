@@ -1,8 +1,7 @@
 /**
  * This interface represents what a View is capable of doing.
  *
- * @author Joshua Payne,
- *         Student Number: 230152032
+ * @author Swethin Panjwani
  * @version 1
  */
 package view;

@@ -1,8 +1,8 @@
 /**
  * This class represents a Spike in a Score Four game (4x4x4 Connect Four).
  *
- * @author Joshua Payne,
- *         Student Number: 230152032
+ * @author Gursevak Billing
+ * @author Joshua Payne
  * @version 1
  */
 package model;

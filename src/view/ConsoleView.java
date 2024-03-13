@@ -1,8 +1,7 @@
 /**
  * This class represents the Console view.
  *
- * @author Joshua Payne,
- *         Student Number: 230152032
+ * @author Swethin Panjwani
  * @version 1
  */
 package view;

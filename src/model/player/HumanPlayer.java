@@ -1,8 +1,7 @@
 /**
  * This class represents a Human player in the game of Score Four.
  *
- * @author Joshua Payne,
- *         Student Number: 230152032
+ * @author Anupriya Shaju
  * @version 1
  */
 package model.player;

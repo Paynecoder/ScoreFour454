@@ -1,8 +1,9 @@
 /**
  * This class represents a Board in a Score Four game (4x4x4 Connect Four).
  *
- * @author Joshua Payne,
- *         Student Number: 230152032
+ * @author Gursevak Billing
+ * @author Joshua Payne
+ * @author Willbert Suteja
  * @version 1
  */
 package model;

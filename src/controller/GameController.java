@@ -2,8 +2,12 @@
  * This class represents the Game Controller. That houses the
  * current Game model as well as a View whether it be Graphics or a GUI.
  *
- * @author Joshua Payne,
- *         Student Number: 230152032
+ * @author Sukirat Dhillon
+ * @author Swethin Panjwani
+ * @author Gursevak Billing
+ * @author Joshua Payne
+ * @author Anupriya Shaju
+ * @author Willbert Suteja
  * @version 1
  */
 package controller;
@@ -13,7 +17,6 @@ import model.BeadColour;
 import model.Game;
 import model.Move;
 import model.player.AIPlayer;
-import view.GameFrame;
 import view.Viewable;
 
 public class GameController {
@@ -102,21 +105,12 @@ public class GameController {
         handleRecommendBlackMove();
       } else if (input.startsWith("go interactive")) {
         handleGoInteractiveCommand();
-      } else if (input.startsWith("go gui")) {
-        handleGoGuiCommand();
       } else {
         view.displayMessage("Invalid Command.");
       }
     } else {
       view.displayMessage("Invalid Command.");
     }
-  }
-
-  private void handleGoGuiCommand() {
-    javax.swing.SwingUtilities.invokeLater(() -> {
-      Viewable gui = new GameFrame();
-      switchView(gui);
-    });
   }
 
   private void handleGoInteractiveCommand() {
@@ -143,7 +137,6 @@ public class GameController {
     view.displayMessage("'get white move.' Get a recommended move from the AI subsystem for the white beads.");
     view.displayMessage("'get black move.' Get a recommended move from the AI subsystem for the black beads.");
     view.displayMessage("'go interactive.' Plays an Interactive 1v1 VS the CPU!");
-    view.displayMessage("'go gui.' Play the game in a GUI!");
   }
 
   private void handleShowBoardCommand() {

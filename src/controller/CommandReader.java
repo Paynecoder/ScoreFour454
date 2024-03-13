@@ -2,8 +2,7 @@
  * This class represents a Command Reader allowing input to be
  * read from the ConsoleView.
  *
- * @author Joshua Payne,
- *         Student Number: 230152032
+ * @author Sukirat Dhillon
  * @version 1
  */
 package controller;
