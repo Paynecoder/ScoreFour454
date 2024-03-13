@@ -24,10 +24,10 @@ public class Board {
     }
   }
 
-
   public boolean isSpikeFullAt(int row, int col) {
     return board[row][col].isFull();
   }
+
   /**
    * Remove the top bead from a Spike on a specified row and column.
    *
@@ -119,37 +119,85 @@ public class Board {
    */
   public String drawBoard() {
     StringBuilder boardDrawing = new StringBuilder();
-    final int MAX_HEIGHT = 4;
-    boardDrawing.append("     1   2   3   4\n");
-    for (int level = MAX_HEIGHT; level > 0; level--) {
-      boardDrawing.append("Level ").append(level).append("\n");
-      for (int row = 0; row < BOARDSIZE; row++) {
-        boardDrawing.append((char) ('A' + row)).append("   ");
-        for (int col = 0; col < BOARDSIZE; col++) {
-          Spike spike = board[row][col];
-          if (level <= spike.height()) {
-            BeadColour beadColour = spike.beadColourAt(level - 1);
-            char beadChar = (beadColour == BeadColour.WHITE) ? 'W' : 'B';
-            boardDrawing.append("[").append(beadChar).append("]");
-          } else {
-            boardDrawing.append("[ ]");
-          }
-          if (col < BOARDSIZE - 1) {
+
+    // Determine the maximum offset for the first row
+    int maxOffset = (BOARDSIZE - 1) * 4; // Increasing the offset fact
+
+    // Iterate over the rows
+    for (int row = 0; row < BOARDSIZE; row++) {
+      // Calculate the current offset based on the row
+      int currentOffset = maxOffset - (row * 4); // Decrease by 2 spaces each row
+
+      // Draw the board from the top of each spike down
+      for (int level = 0; level < BOARDSIZE; level++) {
+        // Append spaces based on the current offset for the first spike in the row
+        if (level == 0) {
+          for (int space = 0; space < currentOffset; space++) {
             boardDrawing.append(" ");
           }
         }
+
+        // Iterate over the columns within the current row
+        for (int col = 0; col < BOARDSIZE; col++) {
+          // Calculate the visual level considering the height of beads in the spike
+          int spikeHeight = board[row][col].height();
+          int visualLevel = BOARDSIZE - spikeHeight;
+
+          // Check if we're at a level where a bead should be drawn
+          if (level >= visualLevel) {
+            // Calculate the actual level of the bead in the spike
+            int actualBeadLevel = level - visualLevel;
+            if (actualBeadLevel < spikeHeight) {
+              BeadColour beadColour = board[row][col].beadColourAt(actualBeadLevel);
+              if (beadColour == BeadColour.WHITE) {
+                boardDrawing.append("W");
+              } else if (beadColour == BeadColour.BLACK) {
+                boardDrawing.append("B");
+              } else {
+                boardDrawing.append("|");
+              }
+            } else {
+              // No bead at this level
+              boardDrawing.append("|");
+            }
+          } else {
+            // Above the highest bead of the spike, so it's empty
+            boardDrawing.append("|");
+          }
+
+          // Append four spaces or dashes after each spike (column) except for the last
+          // one in each row
+          if (col < BOARDSIZE - 1) {
+            if (level == BOARDSIZE - 1) {
+              boardDrawing.append("----"); // Use dashes for the bottom level
+            } else {
+              boardDrawing.append("    "); // Use spaces for other levels
+            }
+          }
+        }
+        // After finishing a level in a row, add a newline
         boardDrawing.append("\n");
+        // If this is not the first level, add the current offset before the next level
+        // begins
+        if (level < BOARDSIZE - 1) {
+          for (int space = 0; space < currentOffset; space++) {
+            boardDrawing.append(" ");
+          }
+        }
       }
-      if (level > 1) {
+      // After finishing all levels in a row, separate the rows by a newline
+      if (row < BOARDSIZE - 1) {
         boardDrawing.append("\n");
       }
     }
+
     return boardDrawing.toString();
   }
 
   /**
    * Checks if there's a winning condition on the board.
-   * This method evaluates all possible line conditions including straight, layer diagonals, and skew diagonals.
+   * This method evaluates all possible line conditions including straight, layer
+   * diagonals, and skew diagonals.
    *
    * @return true if a win condition is found, false otherwise.
    */
