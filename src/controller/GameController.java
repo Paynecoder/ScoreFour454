@@ -53,7 +53,7 @@ public class GameController {
    */
   public void startInteractiveGame() {
     BeadColour chosenColour = commandReader.getInteractiveColour();
-    this.game.startNewGame(chosenColour); // Assume we added this method to Game
+    this.game.startNewGame(chosenColour);
     view.displayMessage("Game started.");
 
     while (!game.checkDraw() && !game.checkWin()) {
@@ -187,7 +187,7 @@ public class GameController {
   private void handleRemoveBeadCommand(String input) {
     int[] coordinates = commandReader.parseRemoveBeadCommand(input);
     if (coordinates != null && game.deleteTopBead(coordinates[0], coordinates[1])) {
-      view.displayMessage("Dine.");
+      view.displayMessage("Done.");
       checkGameStatus();
     } else {
       view.displayMessage("Impossible.");
