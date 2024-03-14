@@ -25,6 +25,12 @@ public class Board {
     }
   }
 
+  /**
+   * Checks if a spike is full at a specified location.
+   * @param row coordinate of spike to check.
+   * @param col coordinate of spike to check.
+   * @return True if the spike is full, false otherwise.
+   */
   public boolean isSpikeFullAt(int row, int col) {
     return board[row][col].isFull();
   }

@@ -15,11 +15,18 @@ public class AI {
   private Random rng;
   private Game game;
 
+  /**
+   * Constructs a new AI object.
+   * @param game the current game to base the moves off of.
+   */
   public AI(Game game) {
     rng = new Random();
     this.game = game;
   }
 
+  /**
+   * @return A move for the AI to play when in interactive mode.
+   */
   public Move getMove() {
     int row, col;
     do {
@@ -29,6 +36,10 @@ public class AI {
     return new Move(row, col, game.getTurn().getPlayerColour());
   }
 
+  /**
+   * @return Returns a recommended move for the player with black beads.
+   * In a human readable format like (A1).
+   */
   public String recommendBlackMove() {
     int row, col;
     char rowChar = 'A';
@@ -53,6 +64,10 @@ public class AI {
     return "" + rowChar + (col + 1) + ".";
   }
 
+    /**
+   * @return Returns a recommended move for the player with white beads.
+   * In a human readable format like (A1).
+   */
   public String recommendWhiteMove() {
     int row, col;
     char rowChar = 'A';

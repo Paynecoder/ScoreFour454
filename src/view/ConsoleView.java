@@ -9,7 +9,7 @@ package view;
 
 public class ConsoleView implements Viewable {
   /**
-   * Displays the passed in message by printing to the console.
+   * Displays the passed in message to th user, by printing to the console.
    */
   @Override
   public void displayMessage(String message) {

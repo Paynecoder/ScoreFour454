@@ -20,7 +20,6 @@ public class Main {
 
 /**
  * To Do:
- * Comments
  * Diagonal Lines in drawBoard
  * Ensure all wincheck is 100%
  */

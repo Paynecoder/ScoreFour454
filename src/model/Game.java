@@ -30,6 +30,11 @@ public class Game {
     currPlayer = player1;
   }
 
+  /**
+   * Starts a new interactive game, clears the board and sets the Players based
+   * off the users specified colour.
+   * @param chosenColour The colour of the human player.
+   */
   public void startNewGame(BeadColour chosenColour) {
     this.board.clearBoard();
 
@@ -45,14 +50,28 @@ public class Game {
 
   }
 
+  /**
+   * Checks if the spike at a specificed location is full.
+   * @param row coordinate of spike to check.
+   * @param col coordinate of spike to be checked.
+   * @return True if the spike is full, false otherwise.
+   */
   public boolean isSpikeFullAt(int row, int col) {
     return board.isSpikeFullAt(row, col);
   }
 
+  /**
+   * Checks if the current board has a winning line on it.
+   * @return True if a winning line is found, false otherwise.
+   */
   public boolean checkWin() {
     return board.checkWin();
   }
 
+  /**
+   * Checks if the current board has a draw by calling checkFull method
+   * @return True if the board is full, false otherwise.
+   */
   public boolean checkDraw() {
     return board.isFull();
   }
