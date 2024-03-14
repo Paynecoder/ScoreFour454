@@ -120,35 +120,19 @@ public class Board {
    */
   public String drawBoard() {
     StringBuilder boardDrawing = new StringBuilder();
-
-    // Determine the maximum offset for the first column
-    int maxOffset = (BOARDSIZE - 1) * 4; // Increasing the offset fact
-
-    // Iterate over the columns, not rows
+    int maxOffset = (BOARDSIZE - 1) * 4;
     for (int col = 0; col < BOARDSIZE; col++) {
-      // Calculate the current offset based on the column, not row
-      int currentOffset = maxOffset - (col * 4); // Decrease by 4 spaces each column
-
-      // Draw the board from the top of each spike down
+      int currentOffset = maxOffset - (col * 4);
       for (int level = 0; level < BOARDSIZE; level++) {
-        // Append spaces based on the current offset for the first spike in the column
         if (level == 0) {
           for (int space = 0; space < currentOffset; space++) {
             boardDrawing.append(" ");
           }
         }
-
-        // Iterate over the rows within the current column, swapping the order of
-        // iteration
         for (int row = 0; row < BOARDSIZE; row++) {
-          // Calculate the visual level considering the height of beads in the spike
           int spikeHeight = board[row][col].height();
           int visualLevel = BOARDSIZE - spikeHeight;
-
-          // Check if we're at a level where a bead should be drawn
           if (level >= visualLevel) {
-            // Calculate the actual level of the bead in the spike
-            // Adjust this line to correctly calculate the actual bead level
             int actualBeadLevel = spikeHeight - 1 - (level - visualLevel);
             if (actualBeadLevel >= 0 && actualBeadLevel < spikeHeight) {
               BeadColour beadColour = board[row][col].beadColourAt(actualBeadLevel);
@@ -160,41 +144,30 @@ public class Board {
                 boardDrawing.append("|");
               }
             } else {
-              // No bead at this level
               boardDrawing.append("|");
             }
           } else {
-            // Above the highest bead of the spike, so it's empty
             boardDrawing.append("|");
           }
-
-          // Append four spaces or dashes after each spike (row) except for the last
-          // one in each column
           if (row < BOARDSIZE - 1) {
             if (level == BOARDSIZE - 1) {
-              boardDrawing.append("----"); // Use dashes for the bottom level
+              boardDrawing.append("----");
             } else {
-              boardDrawing.append("    "); // Use spaces for other levels
+              boardDrawing.append("    ");
             }
           }
         }
-        // After finishing a level in a column, add a newline
         boardDrawing.append("\n");
-        // If this is not the first level, add the current offset before the next level
-        // begins
         if (level < BOARDSIZE - 1) {
           for (int space = 0; space < currentOffset; space++) {
             boardDrawing.append(" ");
           }
         }
       }
-      // After finishing all levels in a column, separate the columns by a newline for
-      // visual separation
       if (col < BOARDSIZE - 1) {
         boardDrawing.append("\n");
       }
     }
-
     return boardDrawing.toString();
   }
 
