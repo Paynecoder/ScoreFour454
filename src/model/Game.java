@@ -78,7 +78,6 @@ public class Game {
 
   /**
    * Attempts to place a bead on the board if the specified Spike is not full.
-   *
    * @param row Row coordinate of specified spike
    * @param col Column coordinate of specified spike
    * @return True if the bead was placed, False otherwise.
@@ -93,7 +92,6 @@ public class Game {
 
   /**
    * Attempts to make the specified move
-   *
    * @param move data of move
    * @return True if the bead was placed, False otherwise.
    */
@@ -107,7 +105,6 @@ public class Game {
 
   /**
    * Attempts to remove the top most bead from specified spike.
-   *
    * @param row Row coordinate of specified spike
    * @param col Column coordinate of specified spike.
    * @return True if a bead was removed, false otherwise.

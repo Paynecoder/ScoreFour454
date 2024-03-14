@@ -17,9 +17,3 @@ public class Main {
         controller.startTesting();
     }
 }
-
-/**
- * To Do:
- * Diagonal Lines in drawBoard
- * Ensure all wincheck is 100%
- */
