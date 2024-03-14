@@ -75,10 +75,6 @@ public class GameController {
     checkGameStatus();
   }
 
-  public void switchView(Viewable view) {
-    this.view = view;
-  }
-
   /**
    * Performs a command if it is valid, Prints an error message otherwise.
    *
@@ -247,6 +243,13 @@ public class GameController {
       view.displayMessage("Game Over! It was a draw.");
       game.clearBoard();
     }
+  }
+
+  /**
+   * @param view The view to switch to
+   */
+  public void switchView(Viewable view) {
+    this.view = view;
   }
 
   /**
