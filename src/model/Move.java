@@ -30,5 +30,11 @@ public class Move {
     return beadColour;
   }
 
+  @Override
+  public String toString() {
+    char rowLetter = (char) ('A' + row);
+    int colNumber = col + 1;
+    return "" + rowLetter + colNumber;
+}
 
 }

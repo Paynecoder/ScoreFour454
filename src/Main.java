@@ -21,7 +21,6 @@ public class Main {
 /**
  * To Do:
  * Comments
- * Add where the AI played a move in interactive mode
  * Diagonal Lines in drawBoard
  * Ensure all wincheck is 100%
  */

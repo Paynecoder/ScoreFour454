@@ -68,6 +68,7 @@ public class GameController {
       }
       game.makeMove(move);
       view.displayMessage(game.drawBoard());
+      view.displayMessage(getGame().getPrevTurn().getName() + " plays " + move.toString() + ".\n");
     }
     checkGameStatus();
   }
