@@ -43,7 +43,7 @@ public class GameController {
    * Starts a new Game by entering the commandReader loop.
    */
   public void startTesting() {
-    view.displayMessage("Game started in testing mode. Enter 'show manual.' for a list of commands.");
+    view.displayMessage("Welcome to Score Four 454! Game started in testing mode. Enter 'show manual.' for a list of commands.");
     while (true) {
       commandReader.readCommand(this);
     }
