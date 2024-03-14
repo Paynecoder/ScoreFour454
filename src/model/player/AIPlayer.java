@@ -5,6 +5,7 @@
  * @version 1
  */
 package model.player;
+
 import model.BeadColour;
 
 public class AIPlayer implements Playable {
@@ -14,6 +15,7 @@ public class AIPlayer implements Playable {
 
   /**
    * Returns a new AIPlayer object with a specified colour
+   *
    * @param colour
    */
   public AIPlayer(BeadColour colour, String name) {

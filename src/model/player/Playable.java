@@ -13,6 +13,7 @@ public interface Playable {
    * @return The bead colour of the player.
    */
   public BeadColour getPlayerColour();
+
   /**
    * @return the specified name of the player.
    */

@@ -35,8 +35,9 @@ public class CommandReader {
     controller.handleConsoleInput(input);
   }
 
-    /**
+  /**
    * Prompts the user to enter a colour and returns the corresponding BeadColour.
+   *
    * @return The chosen BeadColour.
    */
   public BeadColour getInteractiveColour() {
@@ -51,7 +52,7 @@ public class CommandReader {
     return input.equalsIgnoreCase("W") ? BeadColour.WHITE : BeadColour.BLACK;
   }
 
-    /**
+  /**
    * Prompts the user to enter a move and returns the corresponding Move.
    *
    * @param controller The game controller to send the move to.
@@ -72,7 +73,7 @@ public class CommandReader {
     return convertToMove(input, controller);
   }
 
-    /**
+  /**
    * Checks if the given input is a valid move.
    *
    * @param input The input to check.
@@ -81,15 +82,16 @@ public class CommandReader {
    */
   private boolean isValidMove(String input) {
     // Check if the input matches the pattern of a valid move (e.g., 'B2')
-    //Regex!
+    // Regex!
     return input.matches("^[A-Da-d][1-4]$");
   }
 
-    /**
+  /**
    * Converts the given input into a Move.
    *
-   * @param input The input to convert.
-   * @param controller The game controller to get the current player's colour from.
+   * @param input      The input to convert.
+   * @param controller The game controller to get the current player's colour
+   *                   from.
    * @return The Move corresponding to the input.
    */
   private Move convertToMove(String input, GameController controller) {
@@ -98,10 +100,10 @@ public class CommandReader {
     return new Move(row, col, controller.getGame().getTurn().getPlayerColour());
   }
 
-    /**
+  /**
    * Parses a command to add a bead to the game board in testing mode.
    *
-   * @param input The command input string.
+   * @param input      The command input string.
    * @param beadColour The colour of the bead to be added.
    * @return A Move object representing the add bead command.
    */
@@ -113,11 +115,12 @@ public class CommandReader {
     return new Move(row, col, beadColour);
   }
 
-    /**
+  /**
    * Parses a command to remove a bead from the game board in testing mode.
    *
    * @param input The command input string.
-   * @return An array of two integers representing the row and column of the bead to be removed.
+   * @return An array of two integers representing the row and column of the bead
+   *         to be removed.
    */
   public int[] parseRemoveBeadCommand(String input) {
     String location = input.substring(14, input.length() - 1);

@@ -44,7 +44,8 @@ public class GameController {
    * The loop is exited by entering quit command that uses system.exit
    */
   public void startTesting() {
-    view.displayMessage("Welcome to Score Four 454! Game started in testing mode. Enter 'show manual.' for a list of commands.");
+    view.displayMessage(
+        "Welcome to Score Four 454! Game started in testing mode. Enter 'show manual.' for a list of commands.");
     while (true) {
       commandReader.readCommand(this);
     }
@@ -183,7 +184,8 @@ public class GameController {
 
   /**
    * Helper method to add a bead through the testing command.
-   * @param input String of input to parse for location
+   *
+   * @param input      String of input to parse for location
    * @param beadColour Colour of bead to place.
    */
   private void handleAddBeadCommand(String input, BeadColour beadColour) {
@@ -202,6 +204,7 @@ public class GameController {
 
   /**
    * Helper method to remove top bead from a specified spike.
+   *
    * @param input The input to parse for the location.
    */
   private void handleRemoveBeadCommand(String input) {
@@ -217,6 +220,7 @@ public class GameController {
 
   /**
    * Helper method to add a White bead.
+   *
    * @param input to parse for location.
    */
   private void handleAddWhiteBeadCommand(String input) {
@@ -225,6 +229,7 @@ public class GameController {
 
   /**
    * Helper method to add a Black bead.
+   *
    * @param input to parse for location.
    */
   private void handleAddBlackBeadCommand(String input) {

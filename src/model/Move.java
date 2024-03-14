@@ -14,8 +14,9 @@ public class Move {
 
   /**
    * Constructs a new move object, with a specified row, col and colour.
-   * @param row row coordinate
-   * @param col column coordinate
+   *
+   * @param row    row coordinate
+   * @param col    column coordinate
    * @param colour Colour of bead to be placed.
    */
   public Move(int row, int col, BeadColour colour) {
@@ -50,6 +51,6 @@ public class Move {
     char rowLetter = (char) ('A' + row);
     int colNumber = col + 1;
     return "" + rowLetter + colNumber;
-}
+  }
 
 }

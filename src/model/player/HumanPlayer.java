@@ -15,6 +15,7 @@ public class HumanPlayer implements Playable {
 
   /**
    * Returns a new Human Player objcet with a specified Bead Colour.
+   *
    * @param colour
    */
   public HumanPlayer(BeadColour colour, String name) {

@@ -33,6 +33,7 @@ public class Game {
   /**
    * Starts a new interactive game, clears the board and sets the Players based
    * off the users specified colour.
+   *
    * @param chosenColour The colour of the human player.
    */
   public void startNewGame(BeadColour chosenColour) {
@@ -52,6 +53,7 @@ public class Game {
 
   /**
    * Checks if the spike at a specificed location is full.
+   *
    * @param row coordinate of spike to check.
    * @param col coordinate of spike to be checked.
    * @return True if the spike is full, false otherwise.
@@ -62,6 +64,7 @@ public class Game {
 
   /**
    * Checks if the current board has a winning line on it.
+   *
    * @return True if a winning line is found, false otherwise.
    */
   public boolean checkWin() {
@@ -70,6 +73,7 @@ public class Game {
 
   /**
    * Checks if the current board has a draw by calling checkFull method
+   *
    * @return True if the board is full, false otherwise.
    */
   public boolean checkDraw() {
@@ -78,6 +82,7 @@ public class Game {
 
   /**
    * Attempts to place a bead on the board if the specified Spike is not full.
+   *
    * @param row Row coordinate of specified spike
    * @param col Column coordinate of specified spike
    * @return True if the bead was placed, False otherwise.
@@ -92,6 +97,7 @@ public class Game {
 
   /**
    * Attempts to make the specified move
+   *
    * @param move data of move
    * @return True if the bead was placed, False otherwise.
    */
@@ -105,6 +111,7 @@ public class Game {
 
   /**
    * Attempts to remove the top most bead from specified spike.
+   *
    * @param row Row coordinate of specified spike
    * @param col Column coordinate of specified spike.
    * @return True if a bead was removed, false otherwise.

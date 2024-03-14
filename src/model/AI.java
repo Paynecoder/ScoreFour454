@@ -9,7 +9,6 @@ package model;
 
 import java.util.Random;
 
-
 public class AI {
 
   private Random rng;
@@ -17,6 +16,7 @@ public class AI {
 
   /**
    * Constructs a new AI object.
+   *
    * @param game the current game to base the moves off of.
    */
   public AI(Game game) {
@@ -38,7 +38,7 @@ public class AI {
 
   /**
    * @return Returns a recommended move for the player with black beads.
-   * In a human readable format like (A1).
+   *         In a human readable format like (A1).
    */
   public String recommendBlackMove() {
     int row, col;
@@ -64,9 +64,9 @@ public class AI {
     return "" + rowChar + (col + 1) + ".";
   }
 
-    /**
+  /**
    * @return Returns a recommended move for the player with white beads.
-   * In a human readable format like (A1).
+   *         In a human readable format like (A1).
    */
   public String recommendWhiteMove() {
     int row, col;

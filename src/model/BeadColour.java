@@ -7,5 +7,5 @@
 package model;
 
 public enum BeadColour {
-  BLACK,WHITE;
+  BLACK, WHITE;
 }

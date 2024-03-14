@@ -1,3 +1,4 @@
+
 /**
  * The entry point for the Score Four game.
  * Creates a new Game and ConsoleView and starts the game through a GameController.

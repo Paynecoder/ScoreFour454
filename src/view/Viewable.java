@@ -6,7 +6,6 @@
  */
 package view;
 
-
 public interface Viewable {
   /**
    * @param message Displays a passed in message to the user.
