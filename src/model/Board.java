@@ -138,6 +138,7 @@ public class Board {
       if (col < BOARDSIZE - 1)
         boardDrawing.append("\n");
     }
+    boardDrawing.append("--------------------------");
     return boardDrawing.toString();
   }
 
