@@ -68,9 +68,12 @@ public class GameController {
       } else {
         move = commandReader.readInteractiveMoveCommand(this);
       }
-      game.makeMove(move);
-      view.displayMessage(getGame().getPrevTurn().getName() + " plays " + move.toString() + ".\n");
-      view.displayMessage(game.drawBoard());
+      if (game.makeMove(move)) {
+        view.displayMessage(getGame().getPrevTurn().getName() + " plays " + move.toString() + ".\n");
+        view.displayMessage(game.drawBoard());
+      } else {
+        view.displayMessage("Invalid Move: Spike Full");
+      }
     }
     checkGameStatus();
   }
